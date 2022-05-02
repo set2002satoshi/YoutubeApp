@@ -23,17 +23,6 @@ const Register = () => {
         console.log(response.data);
         setRedirect(true);
 
-        // const response = await fetch("http://localhost:8000/user/Cuser",{
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json"},
-        //     body: JSON.stringify({
-        //         user,
-        //         email,
-        //         password
-        //     })
-        // })
-    //     console.log(response);
-    //     setRedirect(true);
     }
     
     if (redirect){

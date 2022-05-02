@@ -45,19 +45,16 @@ func SetUpRoute() {
 
 	app := router.Group("/app")
 	{
-		app.GET("/list", controller.Test)
-		app.GET("/logout", controller.Logout)
+		app.GET("/list", controller.ListUsers)
 	}
-
+	
 	user := router.Group("/user")
 	{
-		user.GET("/list", controller.ListUsers)
 		user.POST("/Cuser", controller.CreateUser)
 		user.POST("/login", controller.Login)
 		user.OPTIONS("/login", controller.Login)
-		// user.GET("/click", controller.User)
-		// user.GET("/logout", controller.Logout)
-		// user.GET("/test", controller.TestPage)
+		user.GET("/logout", controller.Logout)
+
 	}
 
 	router.Run(":8080")

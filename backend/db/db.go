@@ -16,9 +16,6 @@ func DbInit() {
 
 
 
-
-
-
 func OpenDB() *gorm.DB {
 	dsn := "docker:pass@tcp(mySQL:3306)/main?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})

@@ -5,6 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	// "github.com/gin-contrib/sessions/cookie"
+
 
 	"github.com/set2002satoshi/YoutubeApp/backend/db"
 	"github.com/set2002satoshi/YoutubeApp/backend/model"
@@ -16,8 +18,8 @@ func Home(c *gin.Context) {
 	userDATA, err := service.ClickUser(c)
 	if err != nil {
 		mes := fmt.Errorf("not user")
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"status": http.StatusUnauthorized,
+		c.JSON(http.StatusForbidden, gin.H{
+			"status": 403,
 			"message": mes,
 		})
 		return 
@@ -38,18 +40,27 @@ func Home(c *gin.Context) {
 
 
 
-func Test(c *gin.Context) {
-	
+
+func ListUsers(c *gin.Context) {
+	_, err := service.ClickUser(c)
+	users := []model.Users{}
 	DbEngine := db.OpenDB()
 
-	var user model.Users
+	if err != nil {
+		fmt.Println("Error1")
+		return
+	}
 
-	DbEngine.Select("name").Find(&user)
+	if reps := DbEngine.Find(&users); reps.Error != nil {
+		c.JSON(http.StatusNotFound, reps.Error)
+		fmt.Println("Error2")
+		return
+	}
+	fmt.Println("success")
 	c.JSON(http.StatusOK, gin.H{
-		"message": "ok",
-		"user": user,
+		"status": "ok",
+		"users":  users,
 	})
-
 
 }
 

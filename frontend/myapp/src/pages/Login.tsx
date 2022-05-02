@@ -1,6 +1,7 @@
 
-import React, {useState} from 'react';
+import react,{useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import { useCookies } from 'react-cookie';
 import axios from "axios";
 
 const url = "http://localhost:8000/user/login";
@@ -10,6 +11,7 @@ const Login = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [redirect, setRedirect] = useState<boolean>(false);
+    const [cookies, setCookie] = useCookies();
     const navigate = useNavigate();
 
     const options = {
@@ -27,28 +29,14 @@ const Login = () => {
 
 
 
-
-    
     const submit = async () => {
         
         
         await axios.post(url, params, options)
         .then((response) => {
-            console.log(response);
+            setCookie("clientKey", response.data);
+            console.log(cookies);
         });
-        
-        // await fetch(url ,{
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-
-        //     },
-        //     credentials: "include",
-        //     body: JSON.stringify({
-        //         email,
-        //         password
-        //     })
-        // });
 
         setRedirect(true);
     }

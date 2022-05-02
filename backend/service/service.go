@@ -6,6 +6,8 @@ import (
 // 
 	"github.com/gin-gonic/gin"
 	"github.com/dgrijalva/jwt-go"
+	// "github.com/gin-contrib/sessions/cookie"
+
 
 
 	// "github.com/set2002satoshi/GoGinProcess/model"
@@ -17,10 +19,13 @@ const SecretKey = "secret"
 
 func ClickUser(c *gin.Context) (userID string, err error) {
 	 
-	cookie, err := c.Cookie("jwt")
-	// DbEngine := db.OpenDB()
+	// cookie, err := c.Cookie("clientKey")
+	cookie  := c.Request.Header.Get("clientKey")
 
-	// fmt.Println(os.Getenv("key"))
+	// DbEngine := db.OpenDB()
+	
+
+	fmt.Println(cookie)
 
 	token, err := jwt.ParseWithClaims(cookie, &jwt.StandardClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(SecretKey), nil

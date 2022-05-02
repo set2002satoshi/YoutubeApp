@@ -20,28 +20,6 @@ import (
 
 const SecretKey = "secret"
 
-func ListUsers(c *gin.Context) {
-	userDATA, err := service.ClickUser(c)
-	users := []model.Users{}
-	DbEngine := db.OpenDB()
-
-	if err != nil {
-		fmt.Println("Error1")
-		return
-	}
-
-	if reps := DbEngine.Where("ID =?", userDATA).Find(&users); reps.Error != nil {
-		c.JSON(http.StatusNotFound, reps.Error)
-		fmt.Println("Error2")
-		return
-	}
-	fmt.Println("success")
-	c.JSON(http.StatusOK, gin.H{
-		"status": "ok",
-		"users":  users,
-	})
-
-}
 
 func CreateUser(c *gin.Context) {
 
@@ -119,7 +97,7 @@ func Login(c *gin.Context) {
 	}
 
 	fmt.Println("set cookie")
-	c.SetCookie("jwt", token, 3600, "/", "localhost", false, false)
+	c.SetCookie("clientKey", token, 3600, "/", "localhost", false, false)
 
 	c.JSON(200, token)
 
@@ -135,17 +113,12 @@ func Logout(c *gin.Context) {
 		})
 		return
 	}
-	c.SetCookie("jwt", "not token", 0, "/", "localhost", false, false)
+	c.SetCookie("clientKey", "not token", 0, "/", "localhost", false, false)
 
 	c.JSON(200, gin.H{
 		"message": "success",
+		"key": "not token",
 	})
 }
 
-func MethodOptionHandling(c *gin.Context, p *gin.LogFormatterParams) {
-	if p.Method == "OPTION" {
-		err := "Method is OPTION"
-		c.JSON(200, err)
-	}
 
-}
