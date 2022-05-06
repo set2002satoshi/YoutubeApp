@@ -53,7 +53,14 @@ const Home = () => {
 
     return (
         <div>
-            {data}
+            <div>
+              {data}
+            </div>
+            <div>
+                
+                
+            </div>
+            
         </div>
     );
 };
