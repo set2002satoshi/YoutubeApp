@@ -1,5 +1,5 @@
-
-import react,{useState} from 'react';
+import styles from './Form.module.css';
+import { useState } from 'react';
 import {useNavigate} from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import axios from "axios";
@@ -48,7 +48,7 @@ const Login = () => {
 
 
     return (
-        <form action={url} method="post">
+        <form id={styles.mainArea} action={url} method="post">
             <input type="email" className="form-control"  placeholder="name@example.com"
                 onChange={e => setEmail(e.target.value)}
                 value={email}

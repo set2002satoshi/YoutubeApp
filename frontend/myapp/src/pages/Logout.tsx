@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const Logout = () => {
         }catch(e){
             return 
         }
-    });
+    }, [setCookie, Cookies ,removeCookie]);
     if (redirect) {
         navigate("/login");
     }
