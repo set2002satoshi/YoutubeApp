@@ -1,3 +1,4 @@
+import styles from './Form.module.css';
 import React, { useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -30,7 +31,7 @@ const Register = () => {
     }
 
     return (
-        <form action={url} method="post">
+        <form id={styles.mainArea}  action={url} method="post">
             <h1 className="h3 mb-3 fw-normal">Please Register</h1>
             <input className="form-control"  placeholder="Name"
                 onChange={e => setUser(e.target.value)}
