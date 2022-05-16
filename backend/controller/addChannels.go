@@ -32,6 +32,7 @@ func SearchChannels(c *gin.Context) {
 			"message": mes,
 		})
 	} 
+	fmt.Println(ChannelsList)
 
 	c.JSON(http.StatusOK, gin.H{
 		"status": 200,

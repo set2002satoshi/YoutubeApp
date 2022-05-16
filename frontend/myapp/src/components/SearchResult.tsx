@@ -21,10 +21,11 @@ const SearchResult: FC<Props> = ({ searchResultProps }) => {
         (
             async () => {
                 const resp = await fetch(url);
-                console.log(resp);
+                const channels = await resp.json();
             }
         )();
-    },[searchResultProps]);
+    });
+
 
 
 
@@ -32,9 +33,9 @@ const SearchResult: FC<Props> = ({ searchResultProps }) => {
     return (
         <>
             <ImgMediaCard 
-                image={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
+                image={'https://mui.com/static/images/cards/contemplative-reptile.jpg'}
                 channelName={"ヒカキン"}
-                title={"faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+                title={ChannelsList.item[0].channelId}
             />
             {searchResultProps}
         </>
