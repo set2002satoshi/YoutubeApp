@@ -21,6 +21,9 @@ const Nav = () => {
               <li className="nav-item">
                 <Link to="/logout" className="nav-link">Logout</Link>
               </li>
+              <li>
+                
+              </li>
 
             </ul>
           </div>

@@ -1,4 +1,4 @@
-import  React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -53,7 +53,14 @@ const Home = () => {
 
     return (
         <div>
-            {data}
+            <div>
+              {data}
+            </div>
+            <div>
+                
+                
+            </div>
+            
         </div>
     );
 };

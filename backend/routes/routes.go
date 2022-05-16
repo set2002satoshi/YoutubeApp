@@ -36,16 +36,17 @@ func SetUpRoute() {
 		MaxAge: 24 * time.Hour,
 	}))
 
-	router.GET("/", controller.Home)
-
+	
 	// config := cors.DefaultConfig()
 	// config.AllowAllOrigins = true
 	// router.Use(cors.New(config))
-
-
-	app := router.Group("/app")
+	
+	
+	router.GET("list", controller.ListUsers)
+	app := router.Group("/")
 	{
-		app.GET("/list", controller.ListUsers)
+		app.GET("/", controller.Home)
+		app.GET("/search/:Keywold", controller.SearchChannels)
 	}
 	
 	user := router.Group("/user")

@@ -1,0 +1,18 @@
+
+
+
+#berStyle {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 90%;
+    max-width: 450px;
+    margin: 90px auto;
+}
+
+
+
+#siroitu {
+    width: 75%;
+}

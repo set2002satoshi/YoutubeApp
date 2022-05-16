@@ -12,6 +12,8 @@ require (
 	gorm.io/gorm v1.23.4
 )
 
+require github.com/joho/godotenv v1.4.0
+
 require (
 	github.com/gin-contrib/sessions v0.0.4
 	github.com/gin-contrib/sse v0.1.0 // indirect
